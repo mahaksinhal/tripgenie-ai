@@ -1,0 +1,120 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800;900&family=Inter:wght@400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 210 20% 99%; /* #FAFBFC */
+    --foreground: 217 33% 17%; /* #1E293B */
+
+    --card: 0 0% 100%; /* #FFFFFF */
+    --card-foreground: 217 33% 17%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 217 33% 17%;
+
+    --primary: 208 79% 28%; /* #0F4C81 Deep Ocean Blue */
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 199 92% 64%; /* #4FC3F7 Sky Blue */
+    --secondary-foreground: 217 33% 17%;
+
+    --accent: 23 100% 62%; /* #FF8A3D Sunrise Orange */
+    --accent-foreground: 0 0% 100%;
+
+    --muted: 210 20% 96%; /* #F4F6F8 */
+    --muted-foreground: 215 16% 47%; /* #64748B */
+
+    --destructive: 0 72% 51%; /* #EF4444 */
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 214 32% 91%; /* #E2E8F0 */
+    --input: 214 32% 91%;
+    --ring: 208 79% 28%;
+
+    --radius: 1rem; /* 16px */
+  }
+
+  .dark {
+    /* Keeping consistency in dark mode - high-end deep midnight theme */
+    --background: 222 47% 11%;
+    --foreground: 210 40% 98%;
+
+    --card: 222 47% 13%;
+    --card-foreground: 210 40% 98%;
+
+    --popover: 222 47% 13%;
+    --popover-foreground: 210 40% 98%;
+
+    --primary: 199 92% 64%; /* Sky Blue as primary in dark */
+    --primary-foreground: 222 47% 11%;
+
+    --secondary: 208 79% 28%; /* Deep Ocean Blue as secondary in dark */
+    --secondary-foreground: 210 40% 98%;
+
+    --accent: 23 100% 62%; /* Sunrise Orange */
+    --accent-foreground: 222 47% 11%;
+
+    --muted: 222 47% 15%;
+    --muted-foreground: 215 20% 65%;
+
+    --destructive: 0 72% 51%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 222 47% 18%;
+    --input: 222 47% 18%;
+    --ring: 199 92% 64%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  
+  body {
+    @apply bg-background text-foreground transition-colors duration-300;
+    font-family: 'Inter', -apple-system, sans-serif;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Poppins', sans-serif;
+    @apply tracking-tight font-bold text-slate-800 dark:text-slate-100;
+  }
+}
+
+/* Premium Sunrise to Sky background gradient overlay */
+.bg-sunrise-gradient {
+  background: linear-gradient(135deg, rgba(79, 195, 247, 0.1) 0%, rgba(255, 138, 61, 0.1) 100%);
+}
+
+.bg-sunrise-hero {
+  background: linear-gradient(135deg, #0F4C81 0%, #1d6fa5 50%, #4FC3F7 100%);
+}
+
+/* Custom Scrollbar for modern feel */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  @apply bg-transparent;
+}
+::-webkit-scrollbar-thumb {
+  @apply bg-slate-200 dark:bg-slate-800 rounded-full hover:bg-slate-300 dark:hover:bg-slate-700 transition-colors;
+}
+
+/* Micro Interactions */
+.hover-scale {
+  @apply transition-transform duration-300 hover:scale-[1.02] active:scale-[0.98];
+}
+
+.hover-glow-orange {
+  @apply hover:shadow-[0_0_15px_rgba(255,138,61,0.4)] transition-shadow duration-300;
+}
+
+.hover-glow-blue {
+  @apply hover:shadow-[0_0_15px_rgba(79,195,247,0.4)] transition-shadow duration-300;
+}

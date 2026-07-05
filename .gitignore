@@ -1,0 +1,27 @@
+# Node / Frontend
+node_modules/
+dist/
+dist-ssr/
+*.local
+
+# Python / Backend
+.venv/
+venv/
+ENV/
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+
+# Databases & Environment
+.env
+*.db-journal
+*.db-shm
+*.db-wal
+
+# OS / IDE
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+.gemini/
