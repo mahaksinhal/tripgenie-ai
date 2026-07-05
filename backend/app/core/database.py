@@ -18,7 +18,7 @@ try:
         pass
     print("TripGenie Backend: Connected to PostgreSQL database successfully.")
 except Exception as e:
-    print(f"TripGenie Backend: PostgreSQL connection failed. Falling back to local SQLite database...")
+    print(f"TripGenie Backend: PostgreSQL connection failed. Error: {e}. Falling back to local SQLite database...")
     is_sqlite = True
     engine = create_engine(
         "sqlite:///tripgenie.db",
