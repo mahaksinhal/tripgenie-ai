@@ -17,7 +17,8 @@ services:
       - key: PYTHONPATH
         value: /opt/render/project/src/backend
       - key: REDIS_URL
-        fromRedis:
+        fromService:
+          type: redis
           name: tripgenie-redis
           property: connectionString
       - key: DATABASE_URL
