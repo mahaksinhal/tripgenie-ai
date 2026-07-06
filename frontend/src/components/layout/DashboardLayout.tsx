@@ -1,12 +1,11 @@
 import { useState } from "react"
-import { Outlet, useNavigate } from "react-router-dom"
+import { Outlet } from "react-router-dom"
 import { Sidebar } from "./Sidebar"
 import { Navbar } from "./Navbar"
 
 export function DashboardLayout() {
   const [sidebarOpen, setSidebarOpen] = useState(false)
   const [sidebarCollapsed, setSidebarCollapsed] = useState(false)
-  const navigate = useNavigate()
 
   // Scaffold user state and notifications hook
   // In real implementation, these pull from React Query + AuthContext
@@ -21,12 +20,7 @@ export function DashboardLayout() {
     { id: "3", title: "Welcome to TripGenie!", message: "Explore and start building custom itineraries.", is_read: true }
   ])
 
-  const handleLogout = () => {
-    localStorage.removeItem("tripgenie-access-token")
-    localStorage.removeItem("tripgenie-refresh-token")
-    localStorage.removeItem("tripgenie-user")
-    navigate("/login")
-  }
+  // Logout function removed for open-access
 
   const handleMarkRead = (id: string) => {
     setNotifications(prev =>
@@ -53,7 +47,6 @@ export function DashboardLayout() {
         <Navbar
           onToggleSidebar={() => setSidebarOpen(!sidebarOpen)}
           user={user}
-          onLogout={handleLogout}
           notifications={notifications}
           onMarkNotificationRead={handleMarkRead}
           onMarkAllNotificationsRead={handleMarkAllRead}

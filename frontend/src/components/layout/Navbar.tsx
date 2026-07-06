@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect } from "react"
-import { Bell, User, LogOut, Settings, Menu } from "lucide-react"
+import { Bell, User, Settings, Menu } from "lucide-react"
 import { ThemeToggle } from "../theme/theme-toggle"
 
 import { Link } from "react-router-dom"
@@ -7,7 +7,6 @@ import { Link } from "react-router-dom"
 interface NavbarProps {
   onToggleSidebar: () => void
   user: { full_name?: string; email: string } | null
-  onLogout: () => void
   notifications: Array<{ id: string; title: string; message: string; is_read: boolean }>
   onMarkNotificationRead: (id: string) => void
   onMarkAllNotificationsRead: () => void
@@ -16,7 +15,6 @@ interface NavbarProps {
 export function Navbar({
   onToggleSidebar,
   user,
-  onLogout,
   notifications,
   onMarkNotificationRead,
   onMarkAllNotificationsRead
@@ -159,16 +157,7 @@ export function Navbar({
                   <Settings className="h-4 w-4" />
                   <span>Settings</span>
                 </Link>
-                <button
-                  onClick={() => {
-                    onLogout()
-                    setProfileOpen(false)
-                  }}
-                  className="flex w-full items-center gap-2 rounded-sm px-2 py-1.5 text-sm text-destructive hover:bg-destructive/10 transition-colors bg-transparent border-0 cursor-pointer"
-                >
-                  <LogOut className="h-4 w-4" />
-                  <span>Log out</span>
-                </button>
+                {/* Log out removed for open-access */}
               </div>
             </div>
           )}
