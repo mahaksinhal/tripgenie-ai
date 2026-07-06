@@ -219,3 +219,42 @@ def github_login(request: Request) -> Any:
     else:
         origin = settings.FRONTEND_URL
     return {"url": f"{origin}/login?oauth=github&status=success"}
+
+@router.get("/test-db-init")
+def test_db_init():
+    import traceback
+    from sqlalchemy import text, inspect
+    from app.core.database import Base, engine
+    # Import all models to ensure they register
+    from app.models.user import User
+    from app.models.trip import Trip, TripPreference, SavedTrip, TripHistory
+    from app.models.chat import Conversation, Message
+    from app.models.feedback import Feedback, Notification
+    from app.models.cache import APICache
+
+    logs = []
+    logs.append(f"Database dialect: {engine.dialect.name}")
+    try:
+        with engine.connect() as conn:
+            result = conn.execute(text("SELECT 1"))
+            logs.append(f"Connection test: Success (SELECT 1 returned {result.scalar()})")
+    except Exception as e:
+        logs.append(f"Connection test failed: {e}")
+        logs.append(traceback.format_exc())
+        return {"status": "error", "logs": logs}
+
+    try:
+        logs.append("Running Base.metadata.create_all...")
+        Base.metadata.create_all(bind=engine)
+        logs.append("Base.metadata.create_all completed.")
+        
+        inspector = inspect(engine)
+        tables = inspector.get_table_names()
+        logs.append(f"Available tables in database: {tables}")
+    except Exception as e:
+        logs.append(f"Table creation failed: {e}")
+        logs.append(traceback.format_exc())
+        return {"status": "error", "logs": logs}
+
+    return {"status": "success", "logs": logs}
+
