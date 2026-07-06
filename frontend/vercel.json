@@ -3,6 +3,10 @@
     {
       "source": "/api/v1/:path*",
       "destination": "https://tripgenie-backend-v31b.onrender.com/api/v1/:path*"
+    },
+    {
+      "source": "/:path*",
+      "destination": "/index.html"
     }
   ]
 }

@@ -4,10 +4,15 @@ import App from './App.tsx'
 import './index.css'
 
 if ('serviceWorker' in navigator) {
-  window.addEventListener('load', () => {
-    navigator.serviceWorker.register('/sw.js')
-      .then(reg => console.log('TripGenie SW registered:', reg))
-      .catch(err => console.error('SW registration failed:', err));
+  navigator.serviceWorker.getRegistrations().then(registrations => {
+    for (const registration of registrations) {
+      registration.unregister().then(success => {
+        if (success) {
+          console.log('Unregistered active service worker to clear cache:', registration);
+          window.location.reload();
+        }
+      });
+    }
   });
 }
 
