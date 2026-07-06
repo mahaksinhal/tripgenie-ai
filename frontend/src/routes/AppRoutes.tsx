@@ -9,7 +9,6 @@ import { Settings } from "../pages/Settings"
 import { Login } from "../pages/Login"
 import { TripWizard } from "../pages/TripWizard"
 import { Optimizer } from "../pages/Optimizer"
-import { Landing } from "../pages/Landing"
 
 import { useState, useEffect } from "react"
 
